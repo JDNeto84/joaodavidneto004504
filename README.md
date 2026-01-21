@@ -36,7 +36,7 @@ API REST para gerenciamento de artistas e álbuns musicais, desenvolvida como pa
 - [ ] l) Documentar endpoints com OpenAPI/Swagger.
 
 ### Requisitos Sênior
-- [ ] a) Health Checks e Liveness/Readiness.
+- [X] a) Health Checks e Liveness/Readiness.
 - [ ] b) Testes unitários.
 - [ ] c) WebSocket para notificar o front a cada novo álbum cadastrado.
 - [ ] d) Rate limit: até 10 requisições por minuto por usuário.
@@ -56,5 +56,24 @@ API REST para gerenciamento de artistas e álbuns musicais, desenvolvida como pa
 - [ ] Use o projeto/tecnologias base e adicione dependências necessárias.
 - [ ] Use exemplos como carga inicial do banco.
 - [ ] Criar e empacotar aplicação como imagens Docker.
-- [ ] Entregar como containers orquestrados (API + MinIO + BD) via docker-compose.
+- [x] Entregar como containers orquestrados (API + MinIO + BD) via docker-compose.
 
+## Executando a aplicação
+
+```bash
+# Clone o repositório
+git clone <repository-url>
+
+# Variaveis de ambiente
+1. Renomeie o arquivo .env.example para .env
+2. Preencha os valores correspondentes (ex.: credenciais banco, MinIO, JWT secret)
+
+# Compile e execute
+docker compose up --build
+```
+
+## Acessando a aplicação
+
+- **Music-Catalog-API**: http://localhost:8080
+- **Swagger-UI**: http://localhost:8080/swagger-ui/index.html
+- **MinIO**: http://localhost:9001/browser
