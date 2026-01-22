@@ -19,16 +19,25 @@ repositories {
 }
 
 dependencies {
+
+	// Spring Boot
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-flyway")
 	implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("org.springframework.boot:spring-boot-starter-webmvc")
 	implementation("org.springframework.boot:spring-boot-starter-websocket")
+
+	// Migrations
 	implementation("org.flywaydb:flyway-database-postgresql")
+
+	// Documentação
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0")
 
+	// Database
 	runtimeOnly("org.postgresql:postgresql")
+
+	// Test
 	testImplementation("org.springframework.boot:spring-boot-starter-actuator-test")
 	testImplementation("org.springframework.boot:spring-boot-starter-data-jpa-test")
 	testImplementation("org.springframework.boot:spring-boot-starter-flyway-test")
