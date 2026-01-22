@@ -1,7 +1,7 @@
-FROM eclipse-temurin:25-jdk AS build
+FROM gradle:jdk25-corretto AS build
 WORKDIR /app
 COPY music-catalog-service/ .
-RUN ./gradlew clean bootJar --no-daemon
+RUN gradle clean bootJar --no-daemon
 
 FROM eclipse-temurin:25-jre AS runtime
 WORKDIR /app
