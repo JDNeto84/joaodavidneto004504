@@ -6,18 +6,18 @@ API REST para gerenciamento de artistas e álbuns musicais, desenvolvida como pa
 
 ## Status do Projeto
 
-| Milestone                            |  Status  |
-|--------------------------------------|:--------:|
-| v0.1.0 - Infraestrutura e Docker     | Pendente |
-| v0.2.0 - Persistência e Modelagem    | Pendente |
-| v0.3.0 - Segurança e Autenticação    | Pendente |
-| v0.4.0 - Domínio e Operações CRUD    | Pendente |
-| v0.5.0 - Gestão de Arquivos (MinIO)  | Pendente |
-| v0.6.0 - Comunicação em Tempo Real   | Pendente |
-| v0.7.0 - Integração e Sincronismo    | Pendente |
-| v0.8.0 - Observabilidade e Métricas  | Pendente |
-| v0.9.0 - Qualidade e Cobertura       | Pendente |
-| v1.0.0 - Documentação e Entrega      | Pendente |
+| Milestone                            |  Status   |
+|--------------------------------------|:---------:|
+| v0.1.0 - Infraestrutura e Docker     | Concluído |
+| v0.2.0 - Persistência e Modelagem    | Pendente  |
+| v0.3.0 - Segurança e Autenticação    | Pendente  |
+| v0.4.0 - Domínio e Operações CRUD    | Pendente  |
+| v0.5.0 - Gestão de Arquivos (MinIO)  | Pendente  |
+| v0.6.0 - Comunicação em Tempo Real   | Pendente  |
+| v0.7.0 - Integração e Sincronismo    | Pendente  |
+| v0.8.0 - Observabilidade e Métricas  | Pendente  |
+| v0.9.0 - Qualidade e Cobertura       | Pendente  |
+| v1.0.0 - Documentação e Entrega      | Pendente  |
 
 # Checklist de Requisitos Implementados
 
@@ -36,7 +36,7 @@ API REST para gerenciamento de artistas e álbuns musicais, desenvolvida como pa
 - [ ] l) Documentar endpoints com OpenAPI/Swagger.
 
 ### Requisitos Sênior
-- [X] a) Health Checks e Liveness/Readiness.
+- [x] a) Health Checks e Liveness/Readiness.
 - [ ] b) Testes unitários.
 - [ ] c) WebSocket para notificar o front a cada novo álbum cadastrado.
 - [ ] d) Rate limit: até 10 requisições por minuto por usuário.
@@ -57,19 +57,24 @@ API REST para gerenciamento de artistas e álbuns musicais, desenvolvida como pa
 - [ ] Use exemplos como carga inicial do banco.
 - [ ] Criar e empacotar aplicação como imagens Docker.
 - [x] Entregar como containers orquestrados (API + MinIO + BD) via docker-compose.
+---
 
 ## Executando a aplicação
 
 ```bash
-# Clone o repositório
+# 1. Clone o repositório
 git clone <repository-url>
 
-# Variaveis de ambiente
-1. Renomeie o arquivo .env.example para .env
-2. Preencha os valores correspondentes (ex.: credenciais banco, MinIO, JWT secret)
+# 2. Usar o .env.dev.example
+cp .env.dev.example .env
 
-# Compile e execute
+# 3. Sobe tudo com Docker Compose
 docker compose up --build
+
+# 4. Ou apenas os serviços de infra
+docker-compose up postgres minio
+# Roda app localmente
+./gradlew bootRun
 ```
 
 ## Acessando a aplicação
@@ -77,3 +82,26 @@ docker compose up --build
 - **Music-Catalog-API**: http://localhost:8080
 - **Swagger-UI**: http://localhost:8080/swagger-ui/index.html
 - **MinIO**: http://localhost:9001/browser
+---
+
+## Análise com CodeQL
+
+Este projeto utiliza **CodeQL** para varredura de segurança e qualidade do código.  
+O CodeQL gera um banco de dados semântico do código e aplica queries para detectar problemas.
+
+### O que é testado na análise CodeQL
+
+#### Segurança
+- Injeção de SQL, comandos ou scripts
+- Uso inseguro de dados externos (XSS, path traversal)
+- Problemas de autenticação/autorização
+- Uso de APIs criptográficas fracas
+- Vulnerabilidades conhecidas em padrões de código
+
+#### Qualidade
+- Código morto ou redundante
+- Erros de lógica comuns
+- Uso incorreto de bibliotecas padrão
+- Problemas de concorrência (ex.: *race conditions*)
+
+---
