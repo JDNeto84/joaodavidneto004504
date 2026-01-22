@@ -1,3 +1,6 @@
+# Environment Variables
+.env
+
 # Compiled class file
 *.class
 
@@ -22,3 +25,29 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+
+music-catalog-service/HELP.md
+music-catalog-service/.gradle
+music-catalog-service/build/
+music-catalog-service/gradle/wrapper/gradle-wrapper.jar
+music-catalog-service/src/main/**/build/
+music-catalog-service/src/test/**/build/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+music-catalog-service/out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
