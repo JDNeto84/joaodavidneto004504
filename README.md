@@ -6,18 +6,18 @@ API REST para gerenciamento de artistas e álbuns musicais, desenvolvida como pa
 
 ## Status do Projeto
 
-| Milestone                            |  Status  |
-|--------------------------------------|:--------:|
-| v0.1.0 - Infraestrutura e Docker     | Pendente |
-| v0.2.0 - Persistência e Modelagem    | Pendente |
-| v0.3.0 - Segurança e Autenticação    | Pendente |
-| v0.4.0 - Domínio e Operações CRUD    | Pendente |
-| v0.5.0 - Gestão de Arquivos (MinIO)  | Pendente |
-| v0.6.0 - Comunicação em Tempo Real   | Pendente |
-| v0.7.0 - Integração e Sincronismo    | Pendente |
-| v0.8.0 - Observabilidade e Métricas  | Pendente |
-| v0.9.0 - Qualidade e Cobertura       | Pendente |
-| v1.0.0 - Documentação e Entrega      | Pendente |
+| Milestone                            |  Status   |
+|--------------------------------------|:---------:|
+| v0.1.0 - Infraestrutura e Docker     | Concluído |
+| v0.2.0 - Persistência e Modelagem    | Pendente  |
+| v0.3.0 - Segurança e Autenticação    | Pendente  |
+| v0.4.0 - Domínio e Operações CRUD    | Pendente  |
+| v0.5.0 - Gestão de Arquivos (MinIO)  | Pendente  |
+| v0.6.0 - Comunicação em Tempo Real   | Pendente  |
+| v0.7.0 - Integração e Sincronismo    | Pendente  |
+| v0.8.0 - Observabilidade e Métricas  | Pendente  |
+| v0.9.0 - Qualidade e Cobertura       | Pendente  |
+| v1.0.0 - Documentação e Entrega      | Pendente  |
 
 # Checklist de Requisitos Implementados
 
@@ -64,12 +64,24 @@ API REST para gerenciamento de artistas e álbuns musicais, desenvolvida como pa
 # Clone o repositório
 git clone <repository-url>
 
-# Variaveis de ambiente
-1. Renomeie o arquivo .env.example para .env
-2. Preencha os valores correspondentes (ex.: credenciais banco, MinIO, JWT secret)
+# valores para ambiente de desenvolvimento (ex.: DS, MinIO, JWT)
+cp .env.example para .env
 
-# Compile e execute
+# Compile e execute para 'docker compose' embeded ou 'docker-compose' para standalone
 docker compose up --build
+
+# Ou execute o comando abaixo para subir os serviços DS + MinIO
+docker compose up postgres minio
+cd music-catalog-api
+./gradlew wrapper --gradle-version 9.3.0
+
+# Carregar variáveis de ambiente do arquivo .env no WSL
+./run.sh
+
+# Obs. docker compose usa nome do serviço para comunicação interna
+# Ex.: SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/DS
+# Para uso build local da aplicação na conexao com DS 
+# Ex.: SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/DS
 ```
 
 ## Acessando a aplicação

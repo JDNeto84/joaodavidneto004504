@@ -51,3 +51,6 @@ music-catalog-service/out/
 
 ### VS Code ###
 .vscode/
+
+### Lib Spring Security ###
+*SecurityConfig.java
